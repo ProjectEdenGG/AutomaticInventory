@@ -377,6 +377,10 @@ public class AIEventHandler implements Listener
 	{
 	    if(featureEnabled(Features.SortInventory, player))
         {
+            // Dont sort inventory if any other inventory is open
+            if (player.getOpenInventory().getTopInventory().getType() != InventoryType.CRAFTING)
+                return;
+
             new InventorySorter(inventory, 9).run();
             
             if(!playerData.isGotInventorySortInfo())
