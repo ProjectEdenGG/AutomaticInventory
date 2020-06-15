@@ -369,7 +369,7 @@ public class AIEventHandler implements Listener
             if(firstEmpty < 9) return;
             playerData.firstEmptySlot = firstEmpty; 
             PickupSortTask task = new PickupSortTask(player, playerData, inventory);
-            Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(AutomaticInventory.instance, task, 100L);
+            Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(AutomaticInventory.instance, task, 10L);
         }
     }
 	
