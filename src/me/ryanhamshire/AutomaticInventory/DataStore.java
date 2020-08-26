@@ -54,6 +54,8 @@ public class DataStore
         this.addDefault(defaults, Messages.SuccessfulDepositAll2, "Deposited {0} items into nearby chests.", null);
         this.addDefault(defaults, Messages.ChestLidBlocked, "That chest isn't accessible.", null);
         this.addDefault(defaults, Messages.DepositAllAdvertisement, "TIP: Instantly deposit all items from your inventory into all the right nearby boxes with /DepositAll!", null);
+        this.addDefault(defaults, Messages.AutoCraftEnabled, "Auto-crafting enabled.", null);
+        this.addDefault(defaults, Messages.AutoCraftDisabled, "Auto-crafting disabled.", null);
         
         //load the config file
         FileConfiguration config = YamlConfiguration.loadConfiguration(new File(messagesFilePath));

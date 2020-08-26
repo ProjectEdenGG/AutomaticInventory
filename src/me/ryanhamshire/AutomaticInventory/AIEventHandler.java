@@ -2,6 +2,7 @@
 
 package me.ryanhamshire.AutomaticInventory;
 
+import me.ryanhamshire.AutomaticInventory.AutomaticInventory.AutoCraftResult;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
@@ -29,6 +30,7 @@ import org.bukkit.projectiles.ProjectileSource;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Map;
 
 public class AIEventHandler implements Listener 
 {
@@ -145,6 +147,9 @@ public class AIEventHandler implements Listener
                 break;
             case SortChests:
                 if(data.isSortChests()) return true;
+                break;
+            case AutoCraft:
+                if (data.isAutoCrafting()) return true;
                 break;
             case RefillStacks:
                 return true;
@@ -359,6 +364,15 @@ public class AIEventHandler implements Listener
     public void onPickupItem(PlayerPickupItemEvent event)
     {
         Player player = event.getPlayer();
+
+        if (featureEnabled(Features.AutoCraft, player)) {
+            Material material = event.getItem().getItemStack().getType();
+            if (AutomaticInventory.autoCraftMaterials.containsKey(material)) {
+                AutoCraftTask task = new AutoCraftTask(player, material);
+                Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(AutomaticInventory.instance, task, 0L);
+            }
+        }
+
         if(featureEnabled(Features.SortInventory, player))
         {
             PlayerData playerData = PlayerData.FromPlayer(player);
@@ -530,6 +544,44 @@ class InventorySorter implements Runnable
             
             result = new Integer(b.getAmount()).compareTo(a.getAmount());
             return result;
+        }
+    }
+}
+
+class AutoCraftTask implements Runnable {
+    private Player player;
+    private Material material;
+
+    AutoCraftTask(Player player, Material material) {
+        this.player = player;
+        this.material = material;
+    }
+
+    @Override
+    public void run() {
+        Inventory inventory = player.getInventory();
+        ItemStack[] contents = inventory.getContents();
+        double count = 0;
+        for (ItemStack _stack : contents) {
+            if (_stack != null && _stack.getType() == material) {
+                count += _stack.getAmount();
+            }
+        }
+        if (count > 0) {
+            if (AutomaticInventory.autoCraftMaterials.containsKey(material)){
+                AutoCraftResult autocraft = AutomaticInventory.autoCraftMaterials.get(material);
+                if (autocraft != null) {
+                    int replace = (int) (count / autocraft.getAmount());
+                    ItemStack toRemove = new ItemStack(material, replace * autocraft.getAmount());
+                    inventory.removeItem(toRemove);
+
+                    ItemStack crafted = new ItemStack(autocraft.getResult(), replace);
+
+                    Map<Integer, ItemStack> excessItems = player.getInventory().addItem(crafted);
+                    if (!excessItems.isEmpty())
+                        excessItems.values().forEach(excess -> player.getWorld().dropItemNaturally(player.getLocation(), excess));
+                }
+            }
         }
     }
 }

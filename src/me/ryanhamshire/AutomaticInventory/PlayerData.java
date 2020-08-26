@@ -142,6 +142,16 @@ class PlayerData
         this.isDirty = true;
         this.sortInventory = sortInventory;
     }
+
+    private boolean autoCraft = true;
+
+    public boolean isAutoCrafting() {
+        return autoCraft;
+    }
+
+    public void setAutoCrafting(boolean autoCraft) {
+        this.autoCraft = autoCraft;
+    }
     
     void incrementManualDeposits()
     {
@@ -205,6 +215,7 @@ class PlayerData
             config.set("Player Name", this.playerName);
             config.set("Sort Chests", this.sortChests);
             config.set("Sort Personal Inventory", this.sortInventory);
+            config.set("Auto Craft", this.autoCraft);
             config.set("Used Quick Deposit", this.usedQuickDeposit);
             config.set("Received Messages.Personal Inventory", this.gotInventorySortInfo);
             config.set("Received Messages.Chest Inventory", this.gotChestSortInfo);
@@ -242,6 +253,7 @@ class PlayerData
                     FileConfiguration config = YamlConfiguration.loadConfiguration(playerFile);
                     this.sortChests = config.getBoolean("Sort Chests", true);
                     this.sortInventory = config.getBoolean("Sort Personal Inventory", true);
+                    this.autoCraft = config.getBoolean("Auto Craft", true);
                     this.usedQuickDeposit = config.getBoolean("Used Quick Deposit", false);
                     this.gotChestSortInfo = config.getBoolean("Received Messages.Chest Inventory", false);
                     this.gotInventorySortInfo = config.getBoolean("Received Messages.Personal Inventory", false);

@@ -6,5 +6,6 @@ enum Features
     SortInventory,
     SortChests,
     QuickDeposit,
-    DepositAll
+    DepositAll,
+    AutoCraft
 }
