@@ -11,27 +11,23 @@ import java.util.Set;
  *
  * @author RoboMWM
  */
-public enum MaterialColorTag
-{
-    TERRACOTTA,
-    SHULKER_BOX;
+public enum MaterialColorTag {
+	TERRACOTTA,
+	SHULKER_BOX;
 
-    MaterialColorTag()
-    {
-        for (Material material : Material.values())
-        {
-            if (material.name().equals(this.name()))
-                materials.add(material);
-            else for (DyeColor color : DyeColor.values())
-                if (material.name().equals(color.name() + "_" + this.name()))
-                    materials.add(material);
-        }
-    }
+	MaterialColorTag() {
+		for (Material material : Material.values()) {
+			if (material.name().equals(this.name()))
+				materials.add(material);
+			else for (DyeColor color : DyeColor.values())
+				if (material.name().equals(color.name() + "_" + this.name()))
+					materials.add(material);
+		}
+	}
 
-    private Set<Material> materials = new HashSet<>();
+	private final Set<Material> materials = new HashSet<>();
 
-    public boolean isTagged(Material material)
-    {
-        return materials.contains(material);
-    }
+	public boolean isTagged(Material material) {
+		return materials.contains(material);
+	}
 }

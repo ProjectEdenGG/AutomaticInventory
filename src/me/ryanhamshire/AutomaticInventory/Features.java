@@ -1,11 +1,10 @@
 package me.ryanhamshire.AutomaticInventory;
 
-enum Features
-{
-    RefillStacks,
-    SortInventory,
-    SortChests,
-    QuickDeposit,
-    DepositAll,
-    AutoCraft
+enum Features {
+	RefillStacks,
+	SortInventory,
+	SortChests,
+	QuickDeposit,
+	DepositAll,
+	AutoCraft
 }

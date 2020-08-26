@@ -2,16 +2,15 @@
 
 package me.ryanhamshire.AutomaticInventory;
 
-public class CustomizableMessage 
-{
+public class CustomizableMessage {
 	public Messages id;
 	public String text;
 	public String notes;
-	
-	public CustomizableMessage(Messages id, String text, String notes)
-	{
+
+	public CustomizableMessage(Messages id, String text, String notes) {
 		this.id = id;
 		this.text = text;
 		this.notes = notes;
 	}
+
 }
