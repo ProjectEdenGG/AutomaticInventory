@@ -39,6 +39,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
+import org.bukkit.metadata.MetadataValue;
 import org.bukkit.projectiles.ProjectileSource;
 
 import java.util.ArrayList;
@@ -294,7 +295,7 @@ public class AIEventHandler implements Listener {
 		PlayerData playerData = PlayerData.FromPlayer(player);
 		sortPlayerIfEnabled(player, playerData, bottomInventory);
 
-		if (!player.isSneaking() && featureEnabled(Features.SortChests, player)) {
+		if (!player.isSneaking() && !isVanished(player) && featureEnabled(Features.SortChests, player)) {
 			Inventory topInventory = event.getView().getTopInventory();
 			if (!isSortableChestInventory(topInventory, event.getView().getTitle())) return;
 
@@ -399,6 +400,12 @@ public class AIEventHandler implements Listener {
 	void onPlayerQuit(PlayerQuitEvent event) {
 		Player player = event.getPlayer();
 		PlayerData.FromPlayer(player).saveChanges();
+	}
+
+	public static boolean isVanished(Player player) {
+		for (MetadataValue meta : player.getMetadata("vanished"))
+			return (meta.asBoolean());
+		return false;
 	}
 
 }
