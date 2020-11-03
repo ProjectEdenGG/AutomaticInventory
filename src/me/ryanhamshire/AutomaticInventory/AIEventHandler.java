@@ -529,6 +529,7 @@ class AutoCraftTask implements Runnable {
 				AutoCraftResult autocraft = AutomaticInventory.autoCraftMaterials.get(material);
 				if (autocraft != null) {
 					int replace = (int) (count / autocraft.getAmount());
+					if (replace == 0) return;
 					ItemStack toRemove = new ItemStack(material, replace * autocraft.getAmount());
 					inventory.removeItem(toRemove);
 
