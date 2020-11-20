@@ -519,11 +519,10 @@ class AutoCraftTask implements Runnable {
 		Inventory inventory = player.getInventory();
 		ItemStack[] contents = inventory.getContents();
 		double count = 0;
-		for (ItemStack _stack : contents) {
-			if (_stack != null && _stack.getType() == material) {
+		for (ItemStack _stack : contents)
+			if (_stack != null && new ItemStack(_stack).isSimilar(new ItemStack(material)))
 				count += _stack.getAmount();
-			}
-		}
+
 		if (count > 0) {
 			if (AutomaticInventory.autoCraftMaterials.containsKey(material)) {
 				AutoCraftResult autocraft = AutomaticInventory.autoCraftMaterials.get(material);
