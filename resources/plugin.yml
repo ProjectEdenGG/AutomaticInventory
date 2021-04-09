@@ -35,19 +35,19 @@ permissions:
     default: op
   automaticinventory.sortinventory:
     description: Grants permission to auto-sort personal inventory.
-    default: true
+    default: op
   automaticinventory.sortchests:
     description: Grants permission to auto-sort chest content.
-    default: true
+    default: op
   automaticinventory.refillstacks:
     description: Grants permission to auto-refill depleted hotbar stacks.
-    default: true
+    default: op
   automaticinventory.quickdeposit:
     description: Grants permission to auto-deposit matching items into a chest with shift-right-click.
-    default: true
+    default: op
   automaticinventory.depositall:
     description: Grants permission to use /DepositAll.
-    default: true
+    default: op
   automaticinventory.autocraft:
     description: Grants permission to auto-craft.
-    default: true
+    default: op

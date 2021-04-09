@@ -53,7 +53,7 @@ public class AutomaticInventory extends JavaPlugin {
 		put(Material.LAPIS_LAZULI, new AutoCraftResult(Material.LAPIS_BLOCK, 9));
 		put(Material.COAL, new AutoCraftResult(Material.COAL_BLOCK, 9));
 		put(Material.GOLD_NUGGET, new AutoCraftResult(Material.GOLD_INGOT, 9));
-		put(Material.IRON_NUGGET, new AutoCraftResult(Material.IRON_BLOCK, 9));
+		put(Material.IRON_NUGGET, new AutoCraftResult(Material.IRON_INGOT, 9));
 		put(Material.QUARTZ, new AutoCraftResult(Material.QUARTZ_BLOCK, 4));
 	}};
 
