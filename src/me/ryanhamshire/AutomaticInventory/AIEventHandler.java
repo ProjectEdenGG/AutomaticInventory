@@ -77,6 +77,7 @@ public class AIEventHandler implements Listener {
 	@EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
 	public void onFertilize(BlockFertilizeEvent event) {
 		Player player = event.getPlayer();
+		if (player == null) return;
 		PlayerInventory inventory = player.getInventory();
 		EquipmentSlot slot = this.getSlotWithItemStack(inventory, new ItemStack(Material.BONE_MEAL));
 		tryRefillStackInHand(player, slot);
