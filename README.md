@@ -1,6 +1,7 @@
 # AutomaticInventory
 
-## Moved to https://github.com/ProjectEdenGG/Nexus/tree/master/src/main/java/me/pugabyte/nexus/features/store/perks/autosort
+## Moved to [Nexus](https://github.com/ProjectEdenGG/Nexus/tree/master/src/main/java/me/pugabyte/nexus/features/store/perks/autosort)
+
 
 This fork is a continuation of Big_Scary's AutomaticInventory plugin, a formerly-premium plugin on Spigot.
 
